@@ -1,0 +1,63 @@
+{% extends 'member_base.html' %}
+
+{% block title %}
+<title>會員註冊</title>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-lg" style="border-radius: 15px; background-color: #ffffff;">
+    <div class="card-body mt-4">
+        <h2 class="text-center mb-4 text-uppercase text-primary">註冊新會員</h2>
+        <form action="/useradd/" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group mb-3">
+                <label for="username">帳號 <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="請輸入使用者帳號" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="password">密碼 <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="請輸入密碼" required
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{6,20}$"
+                    title="密碼需包含大寫、小寫、數字與特殊符號，長度6-20字元">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="repassword">確認密碼 <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="repassword" name="repassword" placeholder="請再次輸入密碼" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="phone">手機號碼 <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="請輸入手機號碼" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="email">電子信箱 <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="請輸入信箱" required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="birthday">生日 <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="birthday" name="birthday" required>
+            </div>
+
+            {% if messages %}
+                <div>
+                    {% for message in messages %}
+                        <p style="color: red;">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
+            <div class="d-grid mb-3">
+                <input type="submit" class="btn btn-primary btn-lg" value="註冊">
+            </div>
+
+            <p class="text-center text-muted mt-4">已有帳號？<a href="/userlogin/" class="fw-bold text-decoration-none text-primary">登入</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

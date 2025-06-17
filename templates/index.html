@@ -1,0 +1,25 @@
+{% extends 'member_base.html' %}
+
+{% block title %}
+<title>會員系統首頁</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg" style="border-radius: 15px;">
+        <div class="card-body text-center">
+            <h2 class="mb-4 text-uppercase text-primary">會員系統首頁</h2>
+
+            {% if request.user.is_authenticated %}
+                <p class="mb-3 fs-5">歡迎回來，<strong>{{ request.user.username }}</strong>！</p>
+                <a href="/page1/" class="btn btn-success btn-lg me-2">前往會員頁面</a>
+                <a href="/userlogout/" class="btn btn-outline-danger btn-lg">登出</a>
+            {% else %}
+                <p class="mb-3 fs-5 text-danger">您尚未登入</p>
+                <a href="/userlogin/" class="btn btn-primary btn-lg me-2">登入</a>
+                <a href="/useradd/" class="btn btn-outline-secondary btn-lg">註冊帳號</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

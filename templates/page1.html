@@ -1,0 +1,23 @@
+{% extends 'member_base.html' %}
+
+{% block title %}
+<title>會員專屬頁面</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg" style="border-radius: 15px;">
+        <div class="card-body text-center">
+            <h2 class="mb-4 text-uppercase text-success">會員專屬頁面 Page1</h2>
+
+            {% if request.user.is_authenticated %}
+                <p class="fs-5">您好，<strong>{{ request.user.username }}</strong>！這是您的專屬內容。</p>
+                <a href="/index/" class="btn btn-outline-primary btn-lg me-2">回首頁</a>
+                <a href="/userlogout/" class="btn btn-outline-danger btn-lg">登出</a>
+            {% else %}
+                <p class="text-danger">您尚未登入，請先 <a href="/userlogin/">登入</a>。</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
